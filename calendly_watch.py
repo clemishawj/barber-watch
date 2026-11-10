@@ -26,7 +26,7 @@ from zoneinfo import ZoneInfo
 PROFILE_SLUG = "anthony-theadkbarbershop"
 EVENT_SLUG = "30min"
 TIMEZONE = "America/New_York"
-EMAIL_TO = os.environ["EMAIL_TO"]
+EMAIL_TO = os.environ["EMAIL_TO"].strip()
 DAYS_AHEAD = 60          # how far into the future to look
 ALERT_AFTER_FAILURES = 6  # email you if this many runs in a row fail
 
@@ -74,8 +74,8 @@ def fetch_slots():
 
 
 def send_email(subject, body):
-    user = os.environ["GMAIL_USER"]
-    password = os.environ["GMAIL_APP_PASSWORD"]
+    user = os.environ["GMAIL_USER"].strip()
+    password = "".join(os.environ["GMAIL_APP_PASSWORD"].split())
     msg = EmailMessage()
     msg["From"] = user
     msg["To"] = EMAIL_TO
